@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.bstek.bdf2:bdf2-orm-hibernate3:2.1.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/bstek/bdf2/bdf2-orm-hibernate3/2.1.0-SNAPSHOT/bdf2-orm-hibernate3-2.1.0-20161025.080026-2.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/bstek/bdf2/bdf2-orm-hibernate3/2.1.0-SNAPSHOT/bdf2-orm-hibernate3-2.1.0-20161025.080026-2-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/bstek/bdf2/bdf2-orm-hibernate3/2.1.0-SNAPSHOT/bdf2-orm-hibernate3-2.1.0-20161025.080026-2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

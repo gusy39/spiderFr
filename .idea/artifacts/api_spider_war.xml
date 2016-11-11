@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="api-spider:war">
+    <output-path>$PROJECT_DIR$/api-spider/target</output-path>
+    <root id="archive" name="api-spider.war">
+      <element id="artifact" artifact-name="api-spider:war exploded" />
+    </root>
+  </artifact>
+</component>

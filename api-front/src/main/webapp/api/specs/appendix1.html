@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>使用规范</title>
+    <link rel="stylesheet" href="../css/base.css" type="text/css">
+    <link rel="stylesheet" href="../css/common.css" type="text/css">
+</head>
+<body>
+<div class="B_wiki_main ">
+    <h1 class="firstHeading">附录：常用字典</h1>
+    <ul>
+        <li>
+            <h2 class="wiki_title">响应码带代码</h2>
+            <div class="wiki_content">
+                <table class="table" style="width: 88%">
+                    <thead>
+                    <tr>
+                        <th width="20%">错误码</th>
+                        <th width="30%">描述</th>
+                        <th >解决方案</th>
+                    </tr>
+                    </thead>
+                    <tr>
+                        <td>0</td>
+                        <td>响应成功</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>100</td>
+                        <td>提交参数非法</td>
+                        <td>根据响应结果修改参数</td>
+                    </tr>
+                    <tr>
+                        <td>200</td>
+                        <td>未登录或者登录失效</td>
+                        <td>重新登录</td>
+                    </tr>
+                    <tr>
+                        <td>300</td>
+                        <td>系统验证不能通过，请求非法请求等情况</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>400</td>
+                        <td>系统主动抛出一个错误给客户</td>
+                        <td>给出响应的错误提示，做下一步处理</td>
+                    </tr>
+                    <tr>
+                        <td>500</td>
+                        <td>客户拿到响应的结果重新请求一个新的地址</td>
+                        <td>拿到响应结果中的url,再次请求</td>
+                    </tr>
+                </table>
+            </div>
+        </li>
+    </ul>
+
+</div>
+</body>
+</html>

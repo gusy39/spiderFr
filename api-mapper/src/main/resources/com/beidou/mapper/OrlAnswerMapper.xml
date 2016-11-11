@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.beidou.mapper.OrlAnswerMapper">
+  <resultMap id="BaseResultMap" type="com.beidou.models.OrlAnswer">
+    <result column="FID" jdbcType="DECIMAL" property="id" />
+    <result column="FSEQ" jdbcType="DECIMAL" property="fseq" />
+    <result column="FANSWER" jdbcType="VARCHAR" property="fanswer" />
+    <result column="FPARENTID" jdbcType="DECIMAL" property="fparentid" />
+  </resultMap>
+  <insert id="insert" parameterType="com.beidou.models.OrlAnswer">
+    insert into T_QUESTION_ANSWER (FID, FSEQ, FANSWER, 
+      FPARENTID)
+    values (#{id,jdbcType=DECIMAL}, #{fseq,jdbcType=DECIMAL}, #{fanswer,jdbcType=VARCHAR}, 
+      #{fparentid,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.beidou.models.OrlAnswer">
+    insert into T_QUESTION_ANSWER
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        FID,
+      </if>
+      <if test="fseq != null">
+        FSEQ,
+      </if>
+      <if test="fanswer != null">
+        FANSWER,
+      </if>
+      <if test="fparentid != null">
+        FPARENTID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="fseq != null">
+        #{fseq,jdbcType=DECIMAL},
+      </if>
+      <if test="fanswer != null">
+        #{fanswer,jdbcType=VARCHAR},
+      </if>
+      <if test="fparentid != null">
+        #{fparentid,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="queryBySelective" parameterType="map" resultMap="BaseResultMap">
+    select * from T_QUESTION_ANSWER
+  </select>
+</mapper>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+        xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:aop="http://www.springframework.org/schema/aop"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xmlns:mvc="http://www.springframework.org/schema/mvc"
+        xmlns:tx="http://www.springframework.org/schema/tx"
+        xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+        xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+
+
+    <bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+        <property name="corePoolSize" value="${task.core_pool_size}" />
+        <property name="maxPoolSize" value="${task.max_pool_size}" />
+        <property name="queueCapacity" value="${task.queue_capacity}" />
+        <property name="keepAliveSeconds" value="${task.keep_alive_seconds}" />
+    </bean>
+    <bean id="propertyConfigurer_service" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+          lazy-init="false">
+        <property name="locations">
+            <list>
+                <value>classpath:/properties/service.properties</value>
+            </list>
+        </property>
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+    </bean>
+
+	<!-- 商户端H5页面配置 -->
+    <bean id="h5UrlMap" class="java.util.HashMap">
+        <constructor-arg>
+            <props>
+                <prop key="baseUrl2C">${baseUrl2C}</prop>
+                <prop key="qrCode">${qrCode}</prop>
+                <prop key="comments">${comments}</prop>
+                <prop key="logistics">${logistics}</prop>
+                <prop key="claimHome">${claimHome}</prop>
+                <prop key="claimLast">${claimLast}</prop>
+                <prop key="salesStatistics">${salesStatistics}</prop>
+                <prop key="collaboration">${collaboration}</prop>
+                <prop key="feedback">${feedback}</prop>
+                <prop key="relation">${relation}</prop>
+                <prop key="bankaccount">${bankaccount}</prop>
+                <prop key="about">${about}</prop>
+                <prop key="modifymenu">${modifymenu}</prop>
+                <prop key="beidouTel">${beidouTel}</prop>
+                <prop key="help">${help}</prop>
+				<prop key="goodsDetail2">${goodsDetail2}</prop>
+            </props>
+        </constructor-arg>
+    </bean>
+
+	<!-- 用户端 H5页面配置-->
+    <bean id="h5Url2CMap" class="java.util.HashMap">
+        <constructor-arg>
+            <props>
+                <prop key="city">${city}</prop>
+                <prop key="nearby">${nearby}</prop>
+                <prop key="logistics">${logistics2c}</prop>
+                <prop key="collect">${collect}</prop>
+                <prop key="history">${history}</prop>
+                <prop key="business">${business}</prop>
+                <prop key="msg">${msg}</prop>
+                <prop key="about2c">${about2c}</prop>
+                <prop key="feedback2c">${feedback2c}</prop>
+                <prop key="msgsetting">${msgsetting}</prop>
+                <prop key="modifymenu">${modifymenu2c}</prop>
+                <prop key="goodsDetail">${goodsDetail}</prop>
+            </props>
+        </constructor-arg>
+    </bean>
+
+</beans> 

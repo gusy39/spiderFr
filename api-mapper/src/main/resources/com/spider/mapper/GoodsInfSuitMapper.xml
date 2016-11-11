@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.spider.mapper.GoodsInfSuitMapper" >
+  <resultMap id="BaseResultMap" type="com.spider.models.GoodsInfSuit" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="wlb_good_id" property="wlbGoodId" jdbcType="VARCHAR" />
+    <result column="wlb_good_no" property="wlbGoodNo" jdbcType="VARCHAR" />
+    <result column="wlb_good_name" property="wlbGoodName" jdbcType="VARCHAR" />
+    <result column="num" property="num" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, wlb_good_id, wlb_good_no, wlb_good_name, num, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from goodsuit_inf
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from goodsuit_inf
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.spider.models.GoodsInfSuit" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into goodsuit_inf (wlb_good_id, wlb_good_no, wlb_good_name, 
+      num, create_time, update_time
+      )
+    values (#{wlbGoodId,jdbcType=VARCHAR}, #{wlbGoodNo,jdbcType=VARCHAR}, #{wlbGoodName,jdbcType=VARCHAR}, 
+      #{num,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.spider.models.GoodsInfSuit" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into goodsuit_inf
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="wlbGoodId != null" >
+        wlb_good_id,
+      </if>
+      <if test="wlbGoodNo != null" >
+        wlb_good_no,
+      </if>
+      <if test="wlbGoodName != null" >
+        wlb_good_name,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="wlbGoodId != null" >
+        #{wlbGoodId,jdbcType=VARCHAR},
+      </if>
+      <if test="wlbGoodNo != null" >
+        #{wlbGoodNo,jdbcType=VARCHAR},
+      </if>
+      <if test="wlbGoodName != null" >
+        #{wlbGoodName,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.spider.models.GoodsInfSuit" >
+    update goodsuit_inf
+    <set >
+      <if test="wlbGoodId != null" >
+        wlb_good_id = #{wlbGoodId,jdbcType=VARCHAR},
+      </if>
+      <if test="wlbGoodNo != null" >
+        wlb_good_no = #{wlbGoodNo,jdbcType=VARCHAR},
+      </if>
+      <if test="wlbGoodName != null" >
+        wlb_good_name = #{wlbGoodName,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.spider.models.GoodsInfSuit" >
+    update goodsuit_inf
+    set wlb_good_id = #{wlbGoodId,jdbcType=VARCHAR},
+      wlb_good_no = #{wlbGoodNo,jdbcType=VARCHAR},
+      wlb_good_name = #{wlbGoodName,jdbcType=VARCHAR},
+      num = #{num,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

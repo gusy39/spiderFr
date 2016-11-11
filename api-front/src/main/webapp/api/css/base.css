@@ -1,0 +1,84 @@
+.table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	font-size: 12px;
+}
+
+.table th,.table td {
+	border: 1px solid #8CACBB;
+	padding: 0.3em 0.7em;
+	text-align: left;
+	line-height: 24px;
+}
+
+.table th {
+	background: #ABC6DD;
+	text-align: center;
+}
+
+.table thead th {
+	text-align: center;
+}
+
+.table tbody th {
+	text-align: right;
+}
+
+.table tr:hover {
+	background-color: #f6fafd;
+}
+
+.table td:hover {
+	background-color: #f9feff;
+}
+
+.form th {
+	text-align: right;
+}
+
+.form th,.form td {
+	border: 1px solid #D1D7DC;
+}
+
+.form input,.form select .form textarea{
+/*	margin: 5px;*/
+}
+
+.form input[type='checkbox'],.form input[type='radio'] {
+	width: 20px;
+}
+
+fieldset {
+	border: 1px dotted #D1D7DC;
+}
+
+legend {
+	border: 1px dotted #D1D7DC;
+	font-size: small;
+}
+
+.input-w-250{
+	width: 250px;
+}
+
+.f-c-red{
+	color: red;
+}
+
+.btn {
+	color: #333;
+	font: 14px/20px "Microsoft Yahei",tahoma,arial,sans-serif;
+	margin: 15px 0;
+	word-break: break-all;
+	word-wrap: break-word;
+	text-decoration-line: none;
+	background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+	border: 1px solid #0089cd;
+	border-radius: 0;
+	color: #0089cd;
+	margin-right: 10px;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 14px;
+	padding: 9px 20px;
+}

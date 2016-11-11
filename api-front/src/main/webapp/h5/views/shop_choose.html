@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>选择门店</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="../css/global.css" rel="stylesheet">
+    <link href="../css/shop_choose.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="pos_desc">
+        <span class="pos_title">当前定位城市：</span>
+        <span class="pos_con">上海</span>
+      </div>
+      <div class="search">
+        <input type="text" class="keyword" placeholder="输入城市名称或者拼音查询"/>
+        <a href="javascript:;" class="goSearch"></a>
+      </div>
+      <div class="search_list">
+        <ul>
+          <li>
+            <p class="shop_name">掌柜的店（徐汇店）</p>
+            <p class="shop_address">南京东路88号</p>
+          </li>
+          <li>
+            <p class="shop_name">掌柜的店（徐汇店）</p>
+            <p class="shop_address">南京东路88号</p>
+          </li>
+          <li>
+            <p class="shop_name">掌柜的店（徐汇店）</p>
+            <p class="shop_address">南京东路88号</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <script src="../js/vendor/require.js"></script>
+    <script type="text/javascript">
+    // Load common code that includes config,
+    // then load the app logic for this page.
+    require(['../js/common'], function () {
+      // ./js/common.js sets the baseUrl to be ./js/
+      // You can ask for 'app/main-about' here instead
+      // of './js/app/main-about'
+      require(['app/shop_choose']);
+    });
+    </script>
+  </body>
+</html>

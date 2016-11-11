@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.spider.mapper.GoodsInfMapper" >
+  <resultMap id="BaseResultMap" type="com.spider.models.GoodsInf" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="shop_good_name" property="shopGoodName" jdbcType="VARCHAR" />
+    <result column="good_no" property="goodNo" jdbcType="VARCHAR" />
+    <result column="tb_good_id" property="tbGoodId" jdbcType="VARCHAR" />
+    <result column="tb_sku_id" property="tbSkuId" jdbcType="VARCHAR" />
+    <result column="wlb_good_name" property="wlbGoodName" jdbcType="VARCHAR" />
+    <result column="wlb_good_id" property="wlbGoodId" jdbcType="VARCHAR" />
+    <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+    <result column="is_suit" property="isSuit" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, shop_good_name, good_no, tb_good_id, tb_sku_id, wlb_good_name, wlb_good_id, shop_name, 
+    is_suit, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_inf
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from goods_inf
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.spider.models.GoodsInf" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into goods_inf (shop_good_name, good_no, tb_good_id, 
+      tb_sku_id, wlb_good_name, wlb_good_id, 
+      shop_name, is_suit, create_time, 
+      update_time)
+    values (#{shopGoodName,jdbcType=VARCHAR}, #{goodNo,jdbcType=VARCHAR}, #{tbGoodId,jdbcType=VARCHAR}, 
+      #{tbSkuId,jdbcType=VARCHAR}, #{wlbGoodName,jdbcType=VARCHAR}, #{wlbGoodId,jdbcType=VARCHAR}, 
+      #{shopName,jdbcType=VARCHAR}, #{isSuit,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.spider.models.GoodsInf" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into goods_inf
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="shopGoodName != null" >
+        shop_good_name,
+      </if>
+      <if test="goodNo != null" >
+        good_no,
+      </if>
+      <if test="tbGoodId != null" >
+        tb_good_id,
+      </if>
+      <if test="tbSkuId != null" >
+        tb_sku_id,
+      </if>
+      <if test="wlbGoodName != null" >
+        wlb_good_name,
+      </if>
+      <if test="wlbGoodId != null" >
+        wlb_good_id,
+      </if>
+      <if test="shopName != null" >
+        shop_name,
+      </if>
+      <if test="isSuit != null" >
+        is_suit,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="shopGoodName != null" >
+        #{shopGoodName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodNo != null" >
+        #{goodNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tbGoodId != null" >
+        #{tbGoodId,jdbcType=VARCHAR},
+      </if>
+      <if test="tbSkuId != null" >
+        #{tbSkuId,jdbcType=VARCHAR},
+      </if>
+      <if test="wlbGoodName != null" >
+        #{wlbGoodName,jdbcType=VARCHAR},
+      </if>
+      <if test="wlbGoodId != null" >
+        #{wlbGoodId,jdbcType=VARCHAR},
+      </if>
+      <if test="shopName != null" >
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="isSuit != null" >
+        #{isSuit,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.spider.models.GoodsInf" >
+    update goods_inf
+    <set >
+      <if test="shopGoodName != null" >
+        shop_good_name = #{shopGoodName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodNo != null" >
+        good_no = #{goodNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tbGoodId != null" >
+        tb_good_id = #{tbGoodId,jdbcType=VARCHAR},
+      </if>
+      <if test="tbSkuId != null" >
+        tb_sku_id = #{tbSkuId,jdbcType=VARCHAR},
+      </if>
+      <if test="wlbGoodName != null" >
+        wlb_good_name = #{wlbGoodName,jdbcType=VARCHAR},
+      </if>
+      <if test="wlbGoodId != null" >
+        wlb_good_id = #{wlbGoodId,jdbcType=VARCHAR},
+      </if>
+      <if test="shopName != null" >
+        shop_name = #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="isSuit != null" >
+        is_suit = #{isSuit,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.spider.models.GoodsInf" >
+    update goods_inf
+    set shop_good_name = #{shopGoodName,jdbcType=VARCHAR},
+      good_no = #{goodNo,jdbcType=VARCHAR},
+      tb_good_id = #{tbGoodId,jdbcType=VARCHAR},
+      tb_sku_id = #{tbSkuId,jdbcType=VARCHAR},
+      wlb_good_name = #{wlbGoodName,jdbcType=VARCHAR},
+      wlb_good_id = #{wlbGoodId,jdbcType=VARCHAR},
+      shop_name = #{shopName,jdbcType=VARCHAR},
+      is_suit = #{isSuit,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.spider.mapper.GoodsStockFlowMapper" >
+  <resultMap id="BaseResultMap" type="com.spider.models.GoodsStockFlow" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+    <result column="wld_order_sn" property="wldOrderSn" jdbcType="VARCHAR" />
+    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <result column="goods_no_platform" property="goodsNoPlatform" jdbcType="VARCHAR" />
+    <result column="goods_no_wlb" property="goodsNoWlb" jdbcType="VARCHAR" />
+    <result column="warehouse" property="warehouse" jdbcType="VARCHAR" />
+    <result column="operate_time" property="operateTime" jdbcType="TIMESTAMP" />
+    <result column="operate_type" property="operateType" jdbcType="VARCHAR" />
+    <result column="stock_type" property="stockType" jdbcType="VARCHAR" />
+    <result column="operate_number" property="operateNumber" jdbcType="VARCHAR" />
+    <result column="balance_number" property="balanceNumber" jdbcType="VARCHAR" />
+    <result column="erp_order_sn" property="erpOrderSn" jdbcType="VARCHAR" />
+    <result column="out_order_sn" property="outOrderSn" jdbcType="VARCHAR" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="total_amount" property="totalAmount" jdbcType="DECIMAL" />
+    <result column="order_paid" property="orderPaid" jdbcType="DECIMAL" />
+    <result column="total_post" property="totalPost" jdbcType="DECIMAL" />
+    <result column="order_post" property="orderPost" jdbcType="DECIMAL" />
+    <result column="total_tax" property="totalTax" jdbcType="DECIMAL" />
+    <result column="order_tax" property="orderTax" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, shop_name, wld_order_sn, goods_name, goods_no_platform, goods_no_wlb, warehouse, 
+    operate_time, operate_type, stock_type, operate_number, balance_number, erp_order_sn, 
+    out_order_sn, add_time, total_amount, order_paid, total_post, order_post, total_tax, 
+    order_tax
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_stock_flow
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from goods_stock_flow
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.spider.models.GoodsStockFlow" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into goods_stock_flow (shop_name, wld_order_sn, goods_name, 
+      goods_no_platform, goods_no_wlb, warehouse, 
+      operate_time, operate_type, stock_type, 
+      operate_number, balance_number, erp_order_sn, 
+      out_order_sn, add_time, total_amount, 
+      order_paid, total_post, order_post, 
+      total_tax, order_tax)
+    values (#{shopName,jdbcType=VARCHAR}, #{wldOrderSn,jdbcType=VARCHAR}, #{goodsName,jdbcType=VARCHAR}, 
+      #{goodsNoPlatform,jdbcType=VARCHAR}, #{goodsNoWlb,jdbcType=VARCHAR}, #{warehouse,jdbcType=VARCHAR}, 
+      #{operateTime,jdbcType=TIMESTAMP}, #{operateType,jdbcType=VARCHAR}, #{stockType,jdbcType=VARCHAR}, 
+      #{operateNumber,jdbcType=VARCHAR}, #{balanceNumber,jdbcType=VARCHAR}, #{erpOrderSn,jdbcType=VARCHAR}, 
+      #{outOrderSn,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, #{totalAmount,jdbcType=DECIMAL}, 
+      #{orderPaid,jdbcType=DECIMAL}, #{totalPost,jdbcType=DECIMAL}, #{orderPost,jdbcType=DECIMAL}, 
+      #{totalTax,jdbcType=DECIMAL}, #{orderTax,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.spider.models.GoodsStockFlow" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into goods_stock_flow
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="shopName != null" >
+        shop_name,
+      </if>
+      <if test="wldOrderSn != null" >
+        wld_order_sn,
+      </if>
+      <if test="goodsName != null" >
+        goods_name,
+      </if>
+      <if test="goodsNoPlatform != null" >
+        goods_no_platform,
+      </if>
+      <if test="goodsNoWlb != null" >
+        goods_no_wlb,
+      </if>
+      <if test="warehouse != null" >
+        warehouse,
+      </if>
+      <if test="operateTime != null" >
+        operate_time,
+      </if>
+      <if test="operateType != null" >
+        operate_type,
+      </if>
+      <if test="stockType != null" >
+        stock_type,
+      </if>
+      <if test="operateNumber != null" >
+        operate_number,
+      </if>
+      <if test="balanceNumber != null" >
+        balance_number,
+      </if>
+      <if test="erpOrderSn != null" >
+        erp_order_sn,
+      </if>
+      <if test="outOrderSn != null" >
+        out_order_sn,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="totalAmount != null" >
+        total_amount,
+      </if>
+      <if test="orderPaid != null" >
+        order_paid,
+      </if>
+      <if test="totalPost != null" >
+        total_post,
+      </if>
+      <if test="orderPost != null" >
+        order_post,
+      </if>
+      <if test="totalTax != null" >
+        total_tax,
+      </if>
+      <if test="orderTax != null" >
+        order_tax,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="shopName != null" >
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="wldOrderSn != null" >
+        #{wldOrderSn,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null" >
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsNoPlatform != null" >
+        #{goodsNoPlatform,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsNoWlb != null" >
+        #{goodsNoWlb,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouse != null" >
+        #{warehouse,jdbcType=VARCHAR},
+      </if>
+      <if test="operateTime != null" >
+        #{operateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operateType != null" >
+        #{operateType,jdbcType=VARCHAR},
+      </if>
+      <if test="stockType != null" >
+        #{stockType,jdbcType=VARCHAR},
+      </if>
+      <if test="operateNumber != null" >
+        #{operateNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="balanceNumber != null" >
+        #{balanceNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="erpOrderSn != null" >
+        #{erpOrderSn,jdbcType=VARCHAR},
+      </if>
+      <if test="outOrderSn != null" >
+        #{outOrderSn,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="totalAmount != null" >
+        #{totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="orderPaid != null" >
+        #{orderPaid,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPost != null" >
+        #{totalPost,jdbcType=DECIMAL},
+      </if>
+      <if test="orderPost != null" >
+        #{orderPost,jdbcType=DECIMAL},
+      </if>
+      <if test="totalTax != null" >
+        #{totalTax,jdbcType=DECIMAL},
+      </if>
+      <if test="orderTax != null" >
+        #{orderTax,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.spider.models.GoodsStockFlow" >
+    update goods_stock_flow
+    <set >
+      <if test="shopName != null" >
+        shop_name = #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="wldOrderSn != null" >
+        wld_order_sn = #{wldOrderSn,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null" >
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsNoPlatform != null" >
+        goods_no_platform = #{goodsNoPlatform,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsNoWlb != null" >
+        goods_no_wlb = #{goodsNoWlb,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouse != null" >
+        warehouse = #{warehouse,jdbcType=VARCHAR},
+      </if>
+      <if test="operateTime != null" >
+        operate_time = #{operateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operateType != null" >
+        operate_type = #{operateType,jdbcType=VARCHAR},
+      </if>
+      <if test="stockType != null" >
+        stock_type = #{stockType,jdbcType=VARCHAR},
+      </if>
+      <if test="operateNumber != null" >
+        operate_number = #{operateNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="balanceNumber != null" >
+        balance_number = #{balanceNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="erpOrderSn != null" >
+        erp_order_sn = #{erpOrderSn,jdbcType=VARCHAR},
+      </if>
+      <if test="outOrderSn != null" >
+        out_order_sn = #{outOrderSn,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="totalAmount != null" >
+        total_amount = #{totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="orderPaid != null" >
+        order_paid = #{orderPaid,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPost != null" >
+        total_post = #{totalPost,jdbcType=DECIMAL},
+      </if>
+      <if test="orderPost != null" >
+        order_post = #{orderPost,jdbcType=DECIMAL},
+      </if>
+      <if test="totalTax != null" >
+        total_tax = #{totalTax,jdbcType=DECIMAL},
+      </if>
+      <if test="orderTax != null" >
+        order_tax = #{orderTax,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.spider.models.GoodsStockFlow" >
+    update goods_stock_flow
+    set shop_name = #{shopName,jdbcType=VARCHAR},
+      wld_order_sn = #{wldOrderSn,jdbcType=VARCHAR},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      goods_no_platform = #{goodsNoPlatform,jdbcType=VARCHAR},
+      goods_no_wlb = #{goodsNoWlb,jdbcType=VARCHAR},
+      warehouse = #{warehouse,jdbcType=VARCHAR},
+      operate_time = #{operateTime,jdbcType=TIMESTAMP},
+      operate_type = #{operateType,jdbcType=VARCHAR},
+      stock_type = #{stockType,jdbcType=VARCHAR},
+      operate_number = #{operateNumber,jdbcType=VARCHAR},
+      balance_number = #{balanceNumber,jdbcType=VARCHAR},
+      erp_order_sn = #{erpOrderSn,jdbcType=VARCHAR},
+      out_order_sn = #{outOrderSn,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      total_amount = #{totalAmount,jdbcType=DECIMAL},
+      order_paid = #{orderPaid,jdbcType=DECIMAL},
+      total_post = #{totalPost,jdbcType=DECIMAL},
+      order_post = #{orderPost,jdbcType=DECIMAL},
+      total_tax = #{totalTax,jdbcType=DECIMAL},
+      order_tax = #{orderTax,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.beidou.mapper.UsersMapper">
+  <resultMap id="BaseResultMap" type="com.beidou.models.Users">
+    <id column="user_id" jdbcType="INTEGER" property="id" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="question" jdbcType="VARCHAR" property="question" />
+    <result column="answer" jdbcType="VARCHAR" property="answer" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="birthday" jdbcType="DATE" property="birthday" />
+    <result column="user_money" jdbcType="DECIMAL" property="userMoney" />
+    <result column="frozen_money" jdbcType="DECIMAL" property="frozenMoney" />
+    <result column="pay_points" jdbcType="INTEGER" property="payPoints" />
+    <result column="rank_points" jdbcType="INTEGER" property="rankPoints" />
+    <result column="address_id" jdbcType="INTEGER" property="addressId" />
+    <result column="last_time" jdbcType="TIMESTAMP" property="lastTime" />
+    <result column="last_ip" jdbcType="VARCHAR" property="lastIp" />
+    <result column="visit_count" jdbcType="INTEGER" property="visitCount" />
+    <result column="user_rank" jdbcType="INTEGER" property="userRank" />
+    <result column="is_special" jdbcType="INTEGER" property="isSpecial" />
+    <result column="salt" jdbcType="VARCHAR" property="salt" />
+    <result column="flag" jdbcType="INTEGER" property="flag" />
+    <result column="alias" jdbcType="VARCHAR" property="alias" />
+    <result column="msn" jdbcType="VARCHAR" property="msn" />
+    <result column="qq" jdbcType="VARCHAR" property="qq" />
+    <result column="is_validated" jdbcType="INTEGER" property="isValidated" />
+    <result column="credit_line" jdbcType="DECIMAL" property="creditLine" />
+    <result column="passwd_question" jdbcType="VARCHAR" property="passwdQuestion" />
+    <result column="passwd_answer" jdbcType="VARCHAR" property="passwdAnswer" />
+    <result column="agency_id" jdbcType="INTEGER" property="agencyId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="per_img_url" jdbcType="VARCHAR" property="perImgUrl" />
+    <result column="test_create" jdbcType="VARCHAR" property="testCreate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_id, mobile, email, user_name, password, question, answer, sex, birthday, user_money, 
+    frozen_money, pay_points, rank_points, address_id, last_time, last_ip, visit_count, 
+    user_rank, is_special, salt, flag, alias, msn, qq, is_validated, credit_line, passwd_question, 
+    passwd_answer, agency_id, create_time, update_time, per_img_url, test_create
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bd_2c_users
+    where user_id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bd_2c_users
+    where user_id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.beidou.models.Users">
+    insert into bd_2c_users (user_id, mobile, email, 
+      user_name, password, question, 
+      answer, sex, birthday, 
+      user_money, frozen_money, pay_points, 
+      rank_points, address_id, last_time, 
+      last_ip, visit_count, user_rank, 
+      is_special, salt, flag, 
+      alias, msn, qq, is_validated, 
+      credit_line, passwd_question, passwd_answer, 
+      agency_id, create_time, update_time, 
+      per_img_url, test_create)
+    values (#{id,jdbcType=INTEGER}, #{mobile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{question,jdbcType=VARCHAR}, 
+      #{answer,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, #{birthday,jdbcType=DATE}, 
+      #{userMoney,jdbcType=DECIMAL}, #{frozenMoney,jdbcType=DECIMAL}, #{payPoints,jdbcType=INTEGER}, 
+      #{rankPoints,jdbcType=INTEGER}, #{addressId,jdbcType=INTEGER}, #{lastTime,jdbcType=TIMESTAMP}, 
+      #{lastIp,jdbcType=VARCHAR}, #{visitCount,jdbcType=INTEGER}, #{userRank,jdbcType=INTEGER}, 
+      #{isSpecial,jdbcType=INTEGER}, #{salt,jdbcType=VARCHAR}, #{flag,jdbcType=INTEGER}, 
+      #{alias,jdbcType=VARCHAR}, #{msn,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, #{isValidated,jdbcType=INTEGER}, 
+      #{creditLine,jdbcType=DECIMAL}, #{passwdQuestion,jdbcType=VARCHAR}, #{passwdAnswer,jdbcType=VARCHAR}, 
+      #{agencyId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{perImgUrl,jdbcType=VARCHAR}, #{testCreate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.beidou.models.Users">
+    insert into bd_2c_users
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        user_id,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="question != null">
+        question,
+      </if>
+      <if test="answer != null">
+        answer,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="userMoney != null">
+        user_money,
+      </if>
+      <if test="frozenMoney != null">
+        frozen_money,
+      </if>
+      <if test="payPoints != null">
+        pay_points,
+      </if>
+      <if test="rankPoints != null">
+        rank_points,
+      </if>
+      <if test="addressId != null">
+        address_id,
+      </if>
+      <if test="lastTime != null">
+        last_time,
+      </if>
+      <if test="lastIp != null">
+        last_ip,
+      </if>
+      <if test="visitCount != null">
+        visit_count,
+      </if>
+      <if test="userRank != null">
+        user_rank,
+      </if>
+      <if test="isSpecial != null">
+        is_special,
+      </if>
+      <if test="salt != null">
+        salt,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+      <if test="alias != null">
+        alias,
+      </if>
+      <if test="msn != null">
+        msn,
+      </if>
+      <if test="qq != null">
+        qq,
+      </if>
+      <if test="isValidated != null">
+        is_validated,
+      </if>
+      <if test="creditLine != null">
+        credit_line,
+      </if>
+      <if test="passwdQuestion != null">
+        passwd_question,
+      </if>
+      <if test="passwdAnswer != null">
+        passwd_answer,
+      </if>
+      <if test="agencyId != null">
+        agency_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="perImgUrl != null">
+        per_img_url,
+      </if>
+      <if test="testCreate != null">
+        test_create,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="question != null">
+        #{question,jdbcType=VARCHAR},
+      </if>
+      <if test="answer != null">
+        #{answer,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="userMoney != null">
+        #{userMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="frozenMoney != null">
+        #{frozenMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="payPoints != null">
+        #{payPoints,jdbcType=INTEGER},
+      </if>
+      <if test="rankPoints != null">
+        #{rankPoints,jdbcType=INTEGER},
+      </if>
+      <if test="addressId != null">
+        #{addressId,jdbcType=INTEGER},
+      </if>
+      <if test="lastTime != null">
+        #{lastTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastIp != null">
+        #{lastIp,jdbcType=VARCHAR},
+      </if>
+      <if test="visitCount != null">
+        #{visitCount,jdbcType=INTEGER},
+      </if>
+      <if test="userRank != null">
+        #{userRank,jdbcType=INTEGER},
+      </if>
+      <if test="isSpecial != null">
+        #{isSpecial,jdbcType=INTEGER},
+      </if>
+      <if test="salt != null">
+        #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="alias != null">
+        #{alias,jdbcType=VARCHAR},
+      </if>
+      <if test="msn != null">
+        #{msn,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null">
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="isValidated != null">
+        #{isValidated,jdbcType=INTEGER},
+      </if>
+      <if test="creditLine != null">
+        #{creditLine,jdbcType=DECIMAL},
+      </if>
+      <if test="passwdQuestion != null">
+        #{passwdQuestion,jdbcType=VARCHAR},
+      </if>
+      <if test="passwdAnswer != null">
+        #{passwdAnswer,jdbcType=VARCHAR},
+      </if>
+      <if test="agencyId != null">
+        #{agencyId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="perImgUrl != null">
+        #{perImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="testCreate != null">
+        #{testCreate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.beidou.models.Users">
+    update bd_2c_users
+    <set>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="question != null">
+        question = #{question,jdbcType=VARCHAR},
+      </if>
+      <if test="answer != null">
+        answer = #{answer,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="userMoney != null">
+        user_money = #{userMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="frozenMoney != null">
+        frozen_money = #{frozenMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="payPoints != null">
+        pay_points = #{payPoints,jdbcType=INTEGER},
+      </if>
+      <if test="rankPoints != null">
+        rank_points = #{rankPoints,jdbcType=INTEGER},
+      </if>
+      <if test="addressId != null">
+        address_id = #{addressId,jdbcType=INTEGER},
+      </if>
+      <if test="lastTime != null">
+        last_time = #{lastTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastIp != null">
+        last_ip = #{lastIp,jdbcType=VARCHAR},
+      </if>
+      <if test="visitCount != null">
+        visit_count = #{visitCount,jdbcType=INTEGER},
+      </if>
+      <if test="userRank != null">
+        user_rank = #{userRank,jdbcType=INTEGER},
+      </if>
+      <if test="isSpecial != null">
+        is_special = #{isSpecial,jdbcType=INTEGER},
+      </if>
+      <if test="salt != null">
+        salt = #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="alias != null">
+        alias = #{alias,jdbcType=VARCHAR},
+      </if>
+      <if test="msn != null">
+        msn = #{msn,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null">
+        qq = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="isValidated != null">
+        is_validated = #{isValidated,jdbcType=INTEGER},
+      </if>
+      <if test="creditLine != null">
+        credit_line = #{creditLine,jdbcType=DECIMAL},
+      </if>
+      <if test="passwdQuestion != null">
+        passwd_question = #{passwdQuestion,jdbcType=VARCHAR},
+      </if>
+      <if test="passwdAnswer != null">
+        passwd_answer = #{passwdAnswer,jdbcType=VARCHAR},
+      </if>
+      <if test="agencyId != null">
+        agency_id = #{agencyId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="perImgUrl != null">
+        per_img_url = #{perImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="testCreate != null">
+        test_create = #{testCreate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.beidou.models.Users">
+    update bd_2c_users
+    set mobile = #{mobile,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      question = #{question,jdbcType=VARCHAR},
+      answer = #{answer,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=INTEGER},
+      birthday = #{birthday,jdbcType=DATE},
+      user_money = #{userMoney,jdbcType=DECIMAL},
+      frozen_money = #{frozenMoney,jdbcType=DECIMAL},
+      pay_points = #{payPoints,jdbcType=INTEGER},
+      rank_points = #{rankPoints,jdbcType=INTEGER},
+      address_id = #{addressId,jdbcType=INTEGER},
+      last_time = #{lastTime,jdbcType=TIMESTAMP},
+      last_ip = #{lastIp,jdbcType=VARCHAR},
+      visit_count = #{visitCount,jdbcType=INTEGER},
+      user_rank = #{userRank,jdbcType=INTEGER},
+      is_special = #{isSpecial,jdbcType=INTEGER},
+      salt = #{salt,jdbcType=VARCHAR},
+      flag = #{flag,jdbcType=INTEGER},
+      alias = #{alias,jdbcType=VARCHAR},
+      msn = #{msn,jdbcType=VARCHAR},
+      qq = #{qq,jdbcType=VARCHAR},
+      is_validated = #{isValidated,jdbcType=INTEGER},
+      credit_line = #{creditLine,jdbcType=DECIMAL},
+      passwd_question = #{passwdQuestion,jdbcType=VARCHAR},
+      passwd_answer = #{passwdAnswer,jdbcType=VARCHAR},
+      agency_id = #{agencyId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      per_img_url = #{perImgUrl,jdbcType=VARCHAR},
+      test_create = #{testCreate,jdbcType=VARCHAR}
+    where user_id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!--自定义sql-->
+  <select id="queryBySelective" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from bd_2c_users
+    <where>
+      <if test="userName!=null">
+        and user_name like "%"#{userName}"%"
+      </if>
+
+      <if test="mobile!=null">
+        and mobile like "%"#{mobile}"%"
+      </if>
+
+      <if test="fieldBeginDate!=null">
+        and  update_time &gt;= #{fieldBeginDate}
+      </if>
+      <if test="fieldEndDate!=null">
+        and update_time <![CDATA[  <=  ]]>  #{fieldEndDate}
+      </if>
+
+    </where>
+    ORDER BY update_time DESC
+  </select>
+</mapper>

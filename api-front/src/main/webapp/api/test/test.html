@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>接口测试</title>
+    <link rel="stylesheet" href="../css/base.css" type="text/css">
+    <link rel="stylesheet" href="../css/common.css" type="text/css">
+    <script type="text/javascript" src="../js/jquery-1.7.2.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.get("../index.html", function (r) {
+                //api列表
+                var page=$(r);
+                var apiList = page.find("li[type=api]");
+                var apiListItem="";
+                apiList.each(function(i,k){
+                    apiListItem+="<option value='../"+$(k).attr("href")+"'>"+$(k).text().trim()+"</option>";
+                })
+                $("#apiList").html(apiListItem);
+
+                loadFiled($("#apiList").val());
+            });
+
+            function loadFiled(api){
+                $.get(api, function (r) {
+                    var page=$(r);
+                    var comReqParam = page.find("#comReqParam tr");
+                    var apiListItem="";
+                    comReqParam.each(function(i,k){
+                        if(i!=0){
+                            var tds = $(k).find('td');
+                            apiListItem+='<tr><td>' +
+                            '<input type = "text" value="'+ tds.eq(0).text().trim()+'" placeholder = "参数名"></td>' +
+                            '<td><input type="text" placeholder="参数值:'+tds.eq(1).text().trim()+':'+tds.eq(2).text().trim()+'">';
+                            /*if(tds.eq(2).text().trim()=='必须'){
+                                apiListItem+='<small class="f-c-red">*</small>';
+                            }*/
+                            apiListItem+='<a href="javascript:void(0)">删除</a>'+
+                            '</td></tr>';
+
+                        }
+                    })
+                    $("#comReqParam tbody").append(apiListItem);
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+<div class="B_wiki_main ">
+    <h1 class="firstHeading">测试页面</h1>
+
+    <div class="wiki_content">
+        <div id="left" style="float: left;width: 45%;height: 1500px">
+            <table class="table" style="width: 100%;">
+                <tr>
+                    <td width="30%">服务器地址</td>
+                    <td>
+                        <select name="server">
+                            <option value="http://127.0.0.1:90">http://127.0.0.1:90</option>
+                            <option value="http://127.0.0.1:91">http://127.0.0.1:91</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>接口</td>
+                    <td>
+                        <select name="apiList" id="apiList">
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            <hr style="border: 1px #D4E1F2 solid">
+                <table class="table" id="comReqParam" style="width: 100%;">
+                <thead>
+                <tr>
+                    <th width="40%">参数名</th>
+                    <th>值</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="2">
+                            <input type="button" value="添加参数">
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+            <div style="clear:both"></div>
+        </div>
+        <div style="float: left">
+           ddd
+        </div>
+
+        <div style="clear:both"></div>
+    </div>
+
+</div>
+</body>
+</html>

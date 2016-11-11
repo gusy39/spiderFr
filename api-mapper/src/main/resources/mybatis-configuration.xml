@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+
+    </typeAliases>
+    <plugins>
+        <plugin interceptor="com.beidou.mybatis.plugin.OffsetLimitInterceptor">
+            <property name="dialectClass" value="com.beidou.mybatis.dialect.OracleDialect"/>
+        </plugin>
+    </plugins>
+
+    <!--<plugins>-->
+        <!--<plugin interceptor="com.beidou.mybatis.plugin.OffsetLimitInterceptor">-->
+            <!--<property name="dialectClass" value="com.beidou.mybatis.dialect.MySQLDialect"/>-->
+        <!--</plugin>-->
+    <!--</plugins>-->
+</configuration>

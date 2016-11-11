@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>登录接口</title>
+    <link rel="stylesheet" href="../css/base.css" type="text/css">
+    <link rel="stylesheet" href="../css/common.css" type="text/css">
+</head>
+<body>
+<div class="B_wiki_main ">
+    <h1 class="firstHeading">用户登录接口</h1>
+    <ul>
+        <li>
+            <h2 class="wiki_title">接口说明</h2>
+
+            <div class="wiki_content">
+                <table class="table" style="width: 80%">
+                    <tr>
+                        <td width="80">请求地址:</td>
+                        <td>/v1/login.json</td>
+                    </tr>
+                    <tr>
+                        <td>请求方式:</td>
+                        <td>POST</td>
+                    </tr>
+                    <tr>
+                        <td>登 录:</td>
+                        <td>否</td>
+                    </tr>
+                </table>
+            </div>
+        </li>
+        <li>
+            <h1 class="wiki_title">公共参数</h1>
+
+            <div class="wiki_content">
+                <fieldset>
+                    <legend><b>请求参数</b></legend>
+                    <table class="table" id="comReqParam" style="width: 88%">
+                        <thead>
+                        <tr>
+                            <th width="15%">名称</th>
+                            <th width="10%">类型</th>
+                            <th width="8%">是否必须</th>
+                            <th width="15%">默认值</th>
+                            <th>描述</th>
+                        </tr>
+                        </thead>
+                        <tr>
+                            <td>t</td>
+                            <td>String</td>
+                            <td>可选</td>
+                            <td></td>
+                            <td>用户登录服务端生成的回话token 用户必须妥善保存好这个token 以后每次需要验证登录接口都必须带上</td>
+                        </tr>
+                        <tr>
+                            <td>timestamp</td>
+                            <td>number</td>
+                            <td>必须</td>
+                            <td></td>
+                            <td>请求时间戳，当前时间转为毫秒的数字日期</td>
+                        </tr>
+                        <tr>
+                            <td>deviceId</td>
+                            <td>String</td>
+                            <td>必须</td>
+                            <td></td>
+                            <td>设备的唯一标识</td>
+                        </tr>
+                        <tr>
+                            <td>channel</td>
+                            <td>String</td>
+                            <td>可选</td>
+                            <td></td>
+                            <td>设备名称 如：xiaomi,iphone6s,iphone5等</td>
+                        </tr>
+                        <tr>
+                            <td>osv</td>
+                            <td>String</td>
+                            <td>必须</td>
+                            <td></td>
+                            <td>系统版本</td>
+                        </tr>
+                        <tr>
+                            <td>apiv</td>
+                            <td>String</td>
+                            <td>必须</td>
+                            <td></td>
+                            <td>api接口版本 三位数字段：1.0.0(主版本.阶段版本.修复版本)</td>
+                        </tr>
+                        <tr>
+                            <td>sign</td>
+                            <td>String</td>
+                            <td>必须</td>
+                            <td></td>
+                            <td>针对所有的请求参数和url进行签名,签名规则：<a href="sign.html">参考</a></td>
+                        </tr>
+                    </table>
+                </fieldset>
+                <fieldset>
+                    <legend><b>响应参数</b></legend>
+                    <table class="table" style="width: 88%">
+                        <thead>
+                        <tr>
+                            <th width="15%">名称</th>
+                            <th width="15%">类型</th>
+                            <th width="15%">实例值</th>
+                            <th>描述</th>
+                        </tr>
+                        </thead>
+                        <tr>
+                            <td>status</td>
+                            <td>String</td>
+                            <td>200</td>
+                            <td>响应结果(代码参考:<a href="appendix1.html">附录一</a>)</td>
+                        </tr>
+                        <tr>
+                            <td>type</td>
+                            <td>String</td>
+                            <td>array</td>
+                            <td>返回结果中的data字段数据类型，可能值array,string,object</td>
+                        </tr>
+                        <tr>
+                            <td>msg</td>
+                            <td>String</td>
+                            <td>登录过期重新登录</td>
+                            <td>响应给用户的消息，可用于提醒用户</td>
+                        </tr>
+                        <tr>
+                            <td>data</td>
+                            <td>object</td>
+                            <td>{}</td>
+                            <td>返回的结果，可能是数组，字符串，map和type字段array,string,object相对应，具体内容查看接口响应参数节点</td>
+                        </tr>
+                    </table>
+                </fieldset>
+            </div>
+        </li>
+
+        <li>
+            <h1 class="wiki_title">请求参数</h1>
+
+            <div class="wiki_content">
+                <table class="table" style="width: 88%">
+                    <thead>
+                    <tr>
+                        <th width="15%">名称</th>
+                        <th width="10%">类型</th>
+                        <th width="8%">是否必须</th>
+                        <th width="15%">默认值</th>
+                        <th>描述</th>
+                    </tr>
+                    </thead>
+                    <tr>
+                        <td>accountName</td>
+                        <td>String</td>
+                        <td>是</td>
+                        <td></td>
+                        <td>用户名</td>
+                    </tr>
+                    <tr>
+                        <td>pwd</td>
+                        <td>String</td>
+                        <td>是</td>
+                        <td></td>
+                        <td>登录密码</td>
+                    </tr>
+                </table>
+            </div>
+        </li>
+
+        <li>
+            <h1 class="wiki_title">响应参数</h1>
+
+            <div class="wiki_content">
+                <table class="table" style="width: 88%">
+                    <thead>
+                    <tr>
+                        <th width="15%">名称</th>
+                        <th width="15%">类型</th>
+                        <th width="15%">实例值</th>
+                        <th>描述</th>
+                    </tr>
+                    </thead>
+                    <tr>
+                        <td>t</td>
+                        <td>String</td>
+                        <td></td>
+                        <td>登录返回token</td>
+                    </tr>
+                    <tr>
+                        <td>signKey</td>
+                        <td>String</td>
+                        <td>0cc175b9c0f1b6a831c399e269772661</td>
+                        <td>小写一个md5字符串 用户必须和token一样保存下来,该字段在后台签名时用</td>
+                    </tr>
+                </table>
+            </div>
+        </li>
+
+        <li>
+            <h1 class="wiki_title">请求实例</h1>
+
+            <div class="wiki_content">
+                暂无
+            </div>
+        </li>
+        <li>
+            <h1 class="wiki_title">响应实例</h1>
+
+            <div class="wiki_content">
+                <pre>
+{
+    "status": 0,
+    "msg": "success",
+    "type": "string",
+    "content": "登录成功"
+}
+                </pre>
+            </div>
+        </li>
+        <li>
+            <h1 class="wiki_title">错误码解释</h1>
+
+            <div class="wiki_content">
+                <table class="table" style="width: 88%">
+                    <thead>
+                    <tr>
+                        <th width="25%">错误码</th>
+                        <th width="25%">描述</th>
+                        <th>解决方案</th>
+                    </tr>
+                    </thead>
+                    <!--<tr>
+                        <td>10001</td>
+                        <td>用户名为空</td>
+                        <td>输出参数</td>
+                    </tr>-->
+                </table>
+            </div>
+        </li>
+
+        <li>
+            <h1 class="wiki_title">API工具</h1>
+
+            <div class="wiki_content">
+                <a href="http://www.atool.org/httptest.php" class="api-btn-wrap btn" target="_blank">atools</a>
+            </div>
+        </li>
+        <li>
+            <h1 class="wiki_title">FAQ</h1>
+
+            <div class="wiki_content">
+                暂无
+            </div>
+        </li>
+    </ul>
+
+</div>
+</body>
+</html>

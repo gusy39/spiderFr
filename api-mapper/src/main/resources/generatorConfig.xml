@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+
+    <context id="MysqlTables" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!--生成对象工具路径-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://192.168.2.150:3308/wlb2?characterEncoding=utf-8"
+                        userId="root" password="">
+        </jdbcConnection>
+
+        <!--<jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"-->
+                        <!--connectionURL="jdbc:oracle:thin:@58.32.207.106:1521:avm01"-->
+                        <!--userId="shtest1" password="shtest1">-->
+        <!--</jdbcConnection>-->
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+
+        <javaModelGenerator targetPackage="com.spider.models" targetProject="src\main\java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="com.spider.mapper" targetProject="src\main\resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.spider.mapper" targetProject="src\main\java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="rootInterface" value="com.beidou.common.persistent.BaseMapper"/>
+        </javaClientGenerator>
+
+        <!--<table  tableName="T_QUESTION_ANSWER" domainObjectName="OrlAnswer" enableCountByExample="false"-->
+               <!--enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="true" enableSelectByPrimaryKey="true" selectByPrimaryKeyQueryId="">-->
+            <!--<property name="useActualColumnNames" value="false"/>-->
+            <!--<property name="rootClass" value="com.beidou.common.dto.BaseDTO"/>-->
+            <!--&lt;!&ndash;<generatedKey column="id" sqlStatement="Oracle" identity="true"></generatedKey>&ndash;&gt;-->
+            <!--<columnOverride column="FID" property="id"></columnOverride>-->
+        <!--</table>-->
+
+        <table  tableName="goodsuit_inf" domainObjectName="GoodsInfSuit" enableCountByExample="false"
+                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+                selectByExampleQueryId="true" enableSelectByPrimaryKey="true" selectByPrimaryKeyQueryId="">
+            <property name="useActualColumnNames" value="false"/>
+            <property name="rootClass" value="com.beidou.common.dto.BaseDTO"/>
+            <generatedKey column="id" sqlStatement="MySql" identity="true"></generatedKey>
+            <columnOverride column="id" property="id"></columnOverride>
+        </table>
+
+    </context>
+
+</generatorConfiguration>

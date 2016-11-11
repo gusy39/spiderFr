@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
+    <link rel="stylesheet" href="css/base.css" type="text/css">
+    <title>文档首页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+
+
+        .lmenu li {
+            list-style: none;
+        }
+
+        .lmenu em {
+            display: block;
+            position: absolute;
+            cursor: pointer;
+        }
+
+        .icoopen {
+            left: 28px;
+            background-position: 0 -39px;
+        }
+
+        .icoopen2 {
+            left: 42px;
+            background-position: -46px -88px;
+        }
+
+        .icoclose {
+            left: 28px;
+            background-position: -45px -39px;
+        }
+
+        .icoclose2 {
+            left: 42px;
+            background-position: 0 -88px;
+        }
+
+        .iconleaf, .iconleaf2 {
+            width: 3px;
+            height: 5px;
+            background-position: -87px -41px;
+        }
+
+        .iconleaf {
+            left: 47px;
+            top: 11px;
+        }
+
+        .iconleaf2 {
+            left: 72px;
+            top: 10px;
+        }
+
+        .search-side {
+            width: 250px;
+            border-radius: 5px;
+            position: relative;
+            background-color: #FFFFFF;
+            border: 1px solid #ddd;
+            height: 36px;
+            line-height: 36px;
+        }
+
+        .search-side button {
+            background-position: 0 0;
+            border: 0 none;
+            cursor: pointer;
+            display: block;
+            height: 16px;
+            width: 16px;
+            position: relative;
+            left: 11px;
+        }
+
+        .search-box input {
+            position: absolute;
+            top: 11px;
+            background-color: transparent;
+            border: medium none;
+            color: #AFB0B0;
+            height: 16px;
+            margin-left: 37px;
+            outline: medium none;
+            width: 200px;
+        }
+
+        .lmenu {
+            max-width: 250px;
+            height: auto;
+            overflow: hidden;
+            font-family: "宋体", Tahoma, Helvetica, "Microsoft Yahei", "微软雅黑", Arial, STHeiti;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .lmenu ul li {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .lmenu ul li ul {
+            max-height: 350px;
+            overflow: auto;
+        }
+
+        .lmenu ul li ul li ul {
+            height: auto;
+        }
+
+        .lmenu ul li span {
+            display: block;
+            width: 100%;
+            height: 28px;
+            line-height: 28px;
+            text-indent: 3em;
+            font-weight: bolder;
+            background-color: #F7F8F8;
+            font-size: 14px;
+            color: #0E3E5E;
+            border-bottom: 1px solid #D7D7D7;
+            background-position: -46px 0;
+        }
+
+        .lmenu ul li ul li, .lmenu ul li ul li span {
+            /*background-color: #F7F8F8;*/
+            background-color: #FFFFFF;
+            color: #333;
+            text-indent: 5em;
+            font-size: 13px;
+            height: auto;
+            line-height: 28px;
+
+        }
+
+        .lmenu ul li ul li span {
+            background-color: #F7F8F8;
+
+        }
+
+        .lmenu ul li ul li ul li {
+            border: none;
+            text-indent: 7em;
+            font-size: 12px;
+            font-weight: normal;
+            height: 24px;
+            line-height: 24px;
+        }
+
+    </style>
+
+    <script>
+        $(function () {
+            document.getElementById("contentFrame").height = window.screen.height;
+            loadMenu(function (id) {
+                /*alert(id);
+                 window.contentFrame.location.href=id;*/
+            });
+            $('li[aid=]').css('background', "#F5F5F5");
+
+
+        });
+
+
+        /*传入一个函数参数为 id 即li上的属性 aid*/
+        function loadMenu(fun_clickAction) {
+            /*事件回调函数*/
+            clickAction = fun_clickAction;
+            /*一级菜单的样式*/
+            $(".lmenu > ul > li > span").prepend('<em class="icoclose"></em>');
+            /*二级菜单的样式*/
+            $(".lmenu > ul > li > ul > li").each(function () {
+                /*检查是否有节点*/
+                span = $(this).find("span");
+                if (span.length) {
+                    //有节点的话
+                    span.prepend('<em class="icoclose2"></em>');
+                } else {
+                    //无节点的话,绑定事件
+                    $(this).prepend('<em class="iconleaf"></em>')
+                            .click(function () {
+                                clickAction($(this).attr('aid'));
+                            });
+                }
+            });
+            /*三级菜单的样式*/
+            $(".lmenu > ul > li > ul > li > ul > li")
+                    .prepend('<em class="iconleaf2"></em>')
+                    .click(function () {
+                        clickAction($(this).attr('aid'));
+                    });
+
+            $(".lmenu ul li span").click(function () {
+                var ye = $(this).find('em');
+                classNama = ye.attr("class");
+                if (classNama == 'icoclose') {
+                    ye.attr('class', 'icoopen');
+                }
+                else if (classNama == 'icoopen') {
+                    ye.attr('class', 'icoclose');
+                }
+                else if (classNama == 'icoclose2') {
+                    ye.attr('class', 'icoopen2');
+                }
+                else if (classNama == 'icoopen2') {
+                    ye.attr('class', 'icoclose2');
+                }
+                $(this).siblings("ul").slideToggle("normal", "swing");
+            });
+            $(".lmenu li").click(function () {
+                if ($(this).attr("href") != null) {
+                    window.contentFrame.location.href = $(this).attr("href");
+                }
+            });
+        }
+
+
+        function madeCwin(obj) {
+            if (obj && !window.opera) {
+                if (obj.contentDocument && obj.contentDocument.body.offsetHeight) {
+                    obj.height = obj.contentDocument.body.offsetHeight+30;
+                } else if (obj.Document && obj.Document.body.scrollHeight) {
+                    obj.height = obj.Document.body.scrollHeight+30;
+                } else if (window.screen.height) {
+                    obj.height = window.screen.height+30;
+                }
+            }
+        }
+        function SetCwinHeight() {
+            var iframeid = document.getElementById("contentFrame"); //iframe id
+            madeCwin(iframeid);
+        }
+
+    </script>
+
+</head>
+<body>
+<div>
+    <div style="width:18%;float: left;">
+        <div class="lmenu">
+            <ul>
+                <li aid="0">
+                    <span>
+                        <em class="icoclose"></em>
+                        <b>入门必读</b>
+                    </span>
+                    <ul style="display: block;">
+                        <li aid="01" href="welcome.html">
+                            <em class="iconleaf"></em>
+                            欢迎页面
+                        </li>
+                        <li aid="02" href="specs/readme.html">
+                            <em class="iconleaf"></em>
+                            使用规范
+                        </li>
+                        <li aid="02" href="test/test.html">
+                            <em class="iconleaf"></em>
+                            接口测试工具
+                        </li>
+                        <li aid="02" href="specs/appendix1.html">
+                            <em class="iconleaf"></em>
+                            附录一:常用字典
+                        </li>
+                    </ul>
+                </li>
+                <li aid="0">
+                    <span>
+                        <em class="icoclose"></em>
+                        <b>用户接口</b>
+                    </span>
+                    <ul style="display: block;">
+                        <li aid="03" href="specs/login.html" type="api">
+                            <em class="iconleaf"></em>
+                            登录
+                        </li>
+                    </ul>
+                </li>
+                <li aid="1">
+                    <span>
+                        <em class="icoclose"></em>
+                        易语言工具箱
+                    </span>
+                    <ul style="display: block;">
+                        <li aid="11">
+                            <em class="iconleaf"></em>
+                            易语言帮助文档
+                        </li>
+                        <li aid="12">
+                            <em class="iconleaf"></em>
+                            易语言支持库
+                        </li>
+                        <li aid="13">
+					<span>
+						<em class="icoclose2"></em>
+						编程辅助
+					</span>
+                            <ul>
+                                <li aid="131">
+                                    <em class="iconleaf2"></em>
+                                    易语言黑月
+                                </li>
+                                <li aid="132">
+                                    <em class="iconleaf2"></em>
+                                    易语言皮肤
+                                </li>
+                                <li aid="133">
+                                    <em class="iconleaf2"></em>
+                                    易语言编程工具
+                                </li>
+                            </ul>
+                        </li>
+                        <li aid="5">
+					<span>
+						<em class="icoclose2"></em>
+						易语言模块
+					</span>
+                            <ul>
+                                <li aid="7">
+                                    <em class="iconleaf2"></em>
+                                    易语言模块源码
+                                </li>
+                                <li aid="6">
+                                    <em class="iconleaf2"></em>
+                                    易语言成品模块
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+
+            </ul>
+        </div>
+    </div>
+    <div style="float: left;width: 81.5%;">
+        <iframe id="contentFrame" src="welcome.html" name="contentFrame" style="border: 0;width: 100%;"
+                scrolling="no"
+                onload="javascript:SetCwinHeight()"></iframe>
+    </div>
+</div>
+</body>
+</html>

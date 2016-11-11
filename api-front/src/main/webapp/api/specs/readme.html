@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>使用规范</title>
+    <link rel="stylesheet" href="../css/base.css" type="text/css">
+    <link rel="stylesheet" href="../css/common.css" type="text/css">
+</head>
+<body>
+<div class="B_wiki_main ">
+    <h1 class="firstHeading">用户查询</h1>
+    <ul>
+        <li>
+            <h2 class="wiki_title">接口说明</h2>
+            <div class="wiki_content">
+                <table class="table" style="width: 80%">
+                    <tr>
+                        <td width="80">请求地址:</td>
+                        <td>users.json</td>
+                    </tr>
+                    <tr>
+                        <td>请求方式:</td>
+                        <td>GET</td>
+                    </tr>
+                    <tr>
+                        <td>登 录:</td>
+                        <td>否</td>
+                    </tr>
+                </table>
+            </div>
+        </li>
+        <li>
+            <h1 class="wiki_title">公共参数</h1>
+            <div class="wiki_content">
+                <table class="table" style="width: 88%">
+                    <thead>
+                    <tr>
+                        <th width="15%">名称</th>
+                        <th width="10%">类型</th>
+                        <th width="8%">是否必须</th>
+                        <th width="15%">默认值</th>
+                        <th>描述</th>
+                    </tr>
+                    </thead>
+                    <tr>
+                        <td>t</td>
+                        <td>String</td>
+                        <td>可选</td>
+                        <td></td>
+                        <td>用户登录服务端生成的回话token 用户必须妥善保存好这个token 以后每次需要验证登录接口都必须带上</td>
+                    </tr>
+                    <tr>
+                        <td>timestamp</td>
+                        <td>number</td>
+                        <td>必须</td>
+                        <td></td>
+                        <td>请求时间戳，当前时间转为毫秒的数字日期</td>
+                    </tr>
+                    <tr>
+                        <td>deviceId</td>
+                        <td>String</td>
+                        <td>必须</td>
+                        <td></td>
+                        <td>设备的唯一标识</td>
+                    </tr>
+                    <tr>
+                        <td>channel</td>
+                        <td>String</td>
+                        <td>可选</td>
+                        <td></td>
+                        <td>设备名称 如：xiaomi,iphone6s,iphone5等</td>
+                    </tr>
+                    <tr>
+                        <td>osv</td>
+                        <td>String</td>
+                        <td>必须</td>
+                        <td></td>
+                        <td>系统版本</td>
+                    </tr>
+                    <tr>
+                        <td>apiv</td>
+                        <td>String</td>
+                        <td>必须</td>
+                        <td></td>
+                        <td>api接口版本 三位数字段：1.0.0(主版本.阶段版本.修复版本)</td>
+                    </tr>
+                    <tr>
+                        <td>sign</td>
+                        <td>String</td>
+                        <td>必须</td>
+                        <td></td>
+                        <td>针对所有的请求参数和url进行签名,签名规则：<a href="sign.html">参考</a></td>
+                    </tr>
+                </table>
+            </div>
+        </li>
+
+        <li>
+            <h1 class="wiki_title">请求参数</h1>
+            <div class="wiki_content">
+                <table class="table" style="width: 88%">
+                    <thead>
+                    <tr>
+                        <th width="15%">名称</th>
+                        <th width="10%">类型</th>
+                        <th width="8%">是否必须</th>
+                        <th width="15%">默认值</th>
+                        <th>描述</th>
+                    </tr>
+                    </thead>
+                    <tr>
+                        <td>loginName</td>
+                        <td>String</td>
+                        <td>是</td>
+                        <td></td>
+                        <td>用户名</td>
+                    </tr>
+                    <tr>
+                        <td>password</td>
+                        <td>String</td>
+                        <td>是</td>
+                        <td></td>
+                        <td>登录密码</td>
+                    </tr>
+
+                </table>
+            </div>
+        </li>
+
+        <li>
+            <h1 class="wiki_title">响应参数</h1>
+            <div class="wiki_content">
+                <table class="table" style="width: 88%">
+                    <thead>
+                    <tr>
+                        <th width="15%">名称</th>
+                        <th width="15%">类型</th>
+                        <th width="15%">实例值</th>
+                        <th>描述</th>
+                    </tr>
+                    </thead>
+                    <tr>
+                        <td>userOrder</td>
+                        <td>List&lt;UserOrder&gt;</td>
+                        <td></td>
+                        <td>返回是个</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;└orderId</td>
+                        <td>String</td>
+                        <td>是</td>
+                        <td>订单id</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;└orderAmount</td>
+                        <td>String</td>
+                        <td>是</td>
+                        <td>订单金额</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;└dddddd</td>
+                        <td>String</td>
+                        <td>是</td>
+                        <td>订单金额</td>
+                    </tr>
+                </table>
+            </div>
+        </li>
+
+        <li>
+            <h1 class="wiki_title">请求实例</h1>
+            <div class="wiki_content">
+                暂无
+            </div>
+        </li>
+        <li>
+            <h1 class="wiki_title">响应实例</h1>
+            <div class="wiki_content">
+                <pre>
+{
+    "error_response":{
+        "code":50,
+        "msg":"Remote service error",
+        "sub_code":"isv.invalid-parameter",
+        "sub_msg":"非法参数"
+    }
+}
+                </pre>
+            </div>
+        </li>
+        <li>
+            <h1 class="wiki_title">错误码解释</h1>
+            <div class="wiki_content">
+                <table class="table" style="width: 88%">
+                    <thead>
+                    <tr>
+                        <th width="25%">错误码</th>
+                        <th width="25%">描述</th>
+                        <th >解决方案</th>
+                    </tr>
+                    </thead>
+                    <tr>
+                        <td>10001</td>
+                        <td>用户名为空</td>
+                        <td>输出参数</td>
+                    </tr>
+                </table>
+            </div>
+        </li>
+
+        <li>
+            <h1 class="wiki_title">API工具</h1>
+            <div class="wiki_content">
+                <a href="http://www.atool.org/httptest.php" class="api-btn-wrap btn" target="_blank">atools</a>
+            </div>
+        </li>
+        <li>
+            <h1 class="wiki_title">FAQ</h1>
+            <div class="wiki_content">
+                暂无
+            </div>
+        </li>
+    </ul>
+
+</div>
+</body>
+</html>

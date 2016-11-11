@@ -1,0 +1,44 @@
+ul{
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+ul li{
+
+
+}
+
+.B_wiki_main .firstHeading {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border-bottom: 1px solid #e5e5e5;
+    color: #000;
+    font-family: "Microsoft Yahei";
+    font-size: 24px;
+    font-weight: 300;
+    margin-bottom: 15px;
+    margin-top: 20px;
+    padding-bottom: 15px;
+}
+
+.B_wiki_main .wiki_title {
+    border-bottom: 1px solid #e5e5e5;
+    color: #333;
+    font-family: "Microsoft Yahei";
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 37px;
+    margin: 16px 0 8px;
+}
+
+.B_wiki_main .wiki_content{
+    padding-left: 20px;
+    margin: auto;
+}
+pre {
+    background-color: #f9f9f9;
+    border: 1px dashed #2f6fab;
+    color: black;
+    line-height: 1.1em;
+    overflow: hidden;
+    padding: 1em;
+}

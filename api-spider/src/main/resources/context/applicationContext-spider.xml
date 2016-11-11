@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	   http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+	   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd"
+       default-lazy-init="true" default-autowire="byName">
+
+    <context:property-placeholder/>
+
+    <bean id="jsmap" class="java.util.HashMap">
+        <constructor-arg>
+            <props>
+                <prop key="envJs">/js/env.rhino.js</prop>
+                <prop key="jqueryJs">/js/jquery.js</prop>
+            </props>
+        </constructor-arg>
+    </bean>
+
+    <!--<bean id="rhinoScaper" class="com.vdlm.spider.jshtmlparser.RhinoScaper"-->
+    <!--init-method="init" destroy-method="exit" lazy-init="false">-->
+    <!--<property name="jsmap" ref="jsmap" />-->
+    <!--</bean>-->
+
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize">
+            <!-- 设置上传文件的最大尺寸为8MB -->
+            <value>16777216</value>
+        </property>
+    </bean>
+
+    <bean id="ipPools" class="com.spider.http.IpPools"
+          init-method="init" destroy-method="destroy" lazy-init="false">
+        <!--<property name="memcachedSpiderClient" ref="memcachedSpiderClient" />-->
+    </bean>
+
+
+    <bean id="CookieConf" class="com.spider.http.CookieConf"
+          init-method="init" destroy-method="destroy" lazy-init="false"/>
+
+
+    <bean id="cookieStoreProvider" class="com.spider.http.CookieStoreProvider"/>
+
+    <bean id="httpClientProvider" class="com.spider.http.HttpClientProvider"
+          init-method="init" destroy-method="destroy" lazy-init="false">
+        <property name="ipPools" ref="ipPools"/>
+        <property name="cookieStoreProvider" ref="cookieStoreProvider"/>
+    </bean>
+
+    <!-- 任务队列 -->
+    <!--<bean id="parseOrderTaskQueue" class="com.vdlm.spider.queue.TaskQueue"-->
+    <!--init-method="init" destroy-method="destroy" lazy-init="false">-->
+    <!--<property name="path">-->
+    <!--<value><![CDATA[/ouer/data/fqueue/OrderTask]]></value>-->
+    <!--</property>-->
+    <!--</bean>-->
+
+    <!--<bean class="com.vdlm.spider.queue.TaskQueues" lazy-init="false">-->
+    <!--<property name="parseOrderTaskQueue" ref="parseOrderTaskQueue" />-->
+    <!--</bean>-->
+
+    <!--<bean class="com.vdlm.spider.task.TestTask" init-method="init"-->
+          <!--destroy-method="destroy" lazy-init="false">-->
+        <!--<property name="provider" ref="httpClientProvider"/>-->
+        <!--<property name="cookieStoreProvider" ref="cookieStoreProvider"/>-->
+    <!--</bean>-->
+
+    <!--启动rabbitmq-->
+    <bean class="com.spider.rabbitmq.RabbitMqInit" lazy-init="false"
+          init-method="init" destroy-method="destroy">
+        <!--<property name="shops">-->
+        <!--<map>-->
+        <!--<entry key="hengshoutang" value="hst" />-->
+        <!--<entry key="testshop" value="testshop" />-->
+        <!--</map>-->
+        <!--</property>-->
+        <property name="provider" ref="httpClientProvider"/>
+        <property name="port" value="${rabbitmq.port}"/>
+        <property name="serverhost" value="${rabbitmq.serverhost}"/>
+        <property name="userName" value="${rabbitmq.userName}"/>
+        <property name="password" value="${rabbitmq.password}"/>
+        <property name="vhost" value="${rabbitmq.vhost}"/>
+
+
+        <property name="serviceMap">
+            <map>
+                <!--新的wlb服务层-->
+                <entry key="inventoryService" value-ref="inventoryService"/>
+                <entry key="goodsService" value-ref="goodsService"/>
+            </map>
+        </property>
+
+        <property name="parserMap">
+            <map>
+                <!--新的wlb解析器装载-->
+                <entry key="OutInStoreParser" value="com.spider.wlb.parser.PurchaseSaleStorageParser"/>
+                <entry key="PurchaseSaleStorageInsertParser" value="com.spider.wlb.parser.PurchaseSaleStorageInsertParser"/>
+                <entry key="GoodsInfParser" value="com.spider.wlb.parser.GoodsInfParser"/>
+                <entry key="GoodsInfSuitParser" value="com.spider.wlb.parser.GoodsInfSuitParser"/>
+
+            </map>
+        </property>
+    </bean>
+
+
+    <!--<bean id="spiderDataSource" class="com.alibaba.druid.pool.DruidDataSource"-->
+          <!--init-method="init" destroy-method="close" lazy-init="true">-->
+        <!--<property name="url">-->
+            <!--<value><![CDATA[${spider.jdbc.url}]]></value>-->
+        <!--</property>-->
+        <!--<property name="username" value="${spider.jdbc.username}"/>-->
+        <!--<property name="password" value="${spider.jdbc.password}"/>-->
+        <!--<property name="maxActive" value="${spider.jdbc.maxActive}"/>-->
+        <!--<property name="initialSize" value="1"/>-->
+        <!--<property name="maxWait" value="30000"/>-->
+        <!--<property name="minIdle" value="1"/>-->
+        <!--<property name="timeBetweenEvictionRunsMillis" value="30000"/>-->
+        <!--<property name="minEvictableIdleTimeMillis" value="300000"/>-->
+        <!--<property name="validationQuery" value="SELECT 'x'"/>-->
+        <!--<property name="testWhileIdle" value="true"/>-->
+        <!--<property name="testOnBorrow" value="false"/>-->
+        <!--<property name="testOnReturn" value="false"/>-->
+        <!--<property name="removeAbandoned" value="true"/>-->
+        <!--<property name="removeAbandonedTimeout" value="600"/>-->
+        <!--<property name="logAbandoned" value="true"/>-->
+        <!--<property name="filters" value="stat,config"/>-->
+        <!--<property name="connectionProperties" value="config.decrypt=true"/>-->
+    <!--</bean>-->
+
+</beans>

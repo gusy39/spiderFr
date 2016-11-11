@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>签名规范</title>
+    <link rel="stylesheet" href="../css/base.css" type="text/css">
+    <link rel="stylesheet" href="../css/common.css" type="text/css">
+</head>
+<body>
+
+<p>
+
+    签名算法
+</p>
+
+<p>
+
+    签名生成规则如下：参与签名的字段包括noncestr（随机字符串) url（当前网页的URL，不包含#及其后面部分）。对所有待签名参数按照字段名的ASCII
+    码从小到大排序（字典序）后，使用URL键值对的格式（即key1=value1&key2=value2…）拼接成字符串string1。这里需要注意的是所有参数名均为小写字符。
+    对string1作MD5加密，字段名和字段值都采用原始值，不进行URL
+    转义。
+</p>
+
+</body>
+</html>

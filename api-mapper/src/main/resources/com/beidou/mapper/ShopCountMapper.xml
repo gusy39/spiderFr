@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.beidou.mapper.ShopCountMapper" >
+  <resultMap id="BaseResultMap" type="com.beidou.models.ShopCount" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+    <result column="total_in_amount" property="totalInAmount" jdbcType="DECIMAL" />
+    <result column="total_out_amount" property="totalOutAmount" jdbcType="DECIMAL" />
+    <result column="count" property="count" jdbcType="DECIMAL" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, shop_name, total_in_amount, total_out_amount, count, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from erp_shop_count
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from erp_shop_count
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.beidou.models.ShopCount" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into erp_shop_count (shop_name, total_in_amount, total_out_amount, 
+      count, create_time, update_time
+      )
+    values (#{shopName,jdbcType=VARCHAR}, #{totalInAmount,jdbcType=DECIMAL}, #{totalOutAmount,jdbcType=DECIMAL}, 
+      #{count,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.beidou.models.ShopCount" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into erp_shop_count
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="shopName != null" >
+        shop_name,
+      </if>
+      <if test="totalInAmount != null" >
+        total_in_amount,
+      </if>
+      <if test="totalOutAmount != null" >
+        total_out_amount,
+      </if>
+      <if test="count != null" >
+        count,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="shopName != null" >
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="totalInAmount != null" >
+        #{totalInAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalOutAmount != null" >
+        #{totalOutAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="count != null" >
+        #{count,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.beidou.models.ShopCount" >
+    update erp_shop_count
+    <set >
+      <if test="shopName != null" >
+        shop_name = #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="totalInAmount != null" >
+        total_in_amount = #{totalInAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalOutAmount != null" >
+        total_out_amount = #{totalOutAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="count != null" >
+        count = #{count,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.beidou.models.ShopCount" >
+    update erp_shop_count
+    set shop_name = #{shopName,jdbcType=VARCHAR},
+      total_in_amount = #{totalInAmount,jdbcType=DECIMAL},
+      total_out_amount = #{totalOutAmount,jdbcType=DECIMAL},
+      count = #{count,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

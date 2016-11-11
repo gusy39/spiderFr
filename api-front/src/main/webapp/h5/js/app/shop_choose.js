@@ -1,0 +1,1 @@
+define(["app/util/utils","text!app/template/test.html"],function(e,t){"use strict";$(function(){})});
